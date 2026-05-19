@@ -174,6 +174,48 @@
         background: var(--panel);
       }
 
+      .studio {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: center;
+        margin-top: 28px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background:
+          linear-gradient(90deg, rgba(215, 180, 106, 0.08), transparent 42%),
+          var(--panel-soft);
+      }
+
+      .studio h2 {
+        margin: 10px 0;
+        font-size: 28px;
+        letter-spacing: 0;
+      }
+
+      .contact {
+        display: grid;
+        gap: 10px;
+        min-width: 300px;
+      }
+
+      .contact a {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.18);
+        color: var(--text);
+        font-size: 13px;
+      }
+
+      .contact span {
+        color: var(--muted);
+      }
+
       .step {
         display: grid;
         grid-template-columns: 132px 1fr auto;
@@ -225,6 +267,14 @@
 
         footer {
           flex-direction: column;
+        }
+
+        .studio {
+          grid-template-columns: 1fr;
+        }
+
+        .contact {
+          min-width: 0;
         }
       }
     </style>
@@ -291,6 +341,21 @@
           <span>HTTP 200</span>
         </div>
         <code class="code">x402 tx: 0x656044d4463c0848401b9c433a995da9b4a7a8ecf5fc7dd28d70003cc398fe8f</code>
+      </section>
+
+      <section class="studio" aria-label="Prototype studio contact">
+        <div>
+          <div class="label">Prototype Studio</div>
+          <h2>AI agents, x402 APIs, and workflow prototypes.</h2>
+          <p>
+            Open to prototype work, ecosystem experiments, and technical collaborations around AI workflow agents,
+            Base-native payments, and launch automation.
+          </p>
+        </div>
+        <div class="contact">
+          <a href="https://x.com/G9Yeu21"><span>X / Twitter</span><strong>@G9Yeu21</strong></a>
+          <a href="mailto:lovekry19950411@gmail.com"><span>Email</span><strong>lovekry19950411@gmail.com</strong></a>
+        </div>
       </section>
 
       <footer>
