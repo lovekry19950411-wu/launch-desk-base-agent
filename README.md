@@ -23,6 +23,18 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 - Vercel: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
 - Builder Code: `bc_9jnnvjew`
 
+## Public status page
+
+This repo includes a tiny static `index.html` for Vercel deployment and project verification.
+
+It is intentionally separate from the agent scripts:
+
+- safe public metadata only
+- no private keys
+- no production wallet secret
+- no backend dependency
+- no change to the CDP or x402 test flow
+
 ## Free-first scope
 
 The current phase should stay free or near-free:
