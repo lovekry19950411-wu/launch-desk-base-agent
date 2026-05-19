@@ -1,0 +1,23 @@
+{
+  "name": "base-agent-v2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "agent:chat": "node scripts/base-agent-chat.mjs",
+    "agent:status": "node scripts/base-agent-status.mjs",
+    "agent:faucet": "node scripts/base-agent-faucet.mjs",
+    "proof": "node scripts/check-base-proof.mjs",
+    "x402:init-payer": "node scripts/x402-init-payer.mjs",
+    "x402:test": "node scripts/x402-test-readiness.mjs"
+  },
+  "dependencies": {
+    "@coinbase/agentkit": "latest",
+    "@x402/core": "^2.12.0",
+    "@x402/evm": "^2.12.0",
+    "@x402/express": "^2.12.0",
+    "@x402/fetch": "^2.12.0",
+    "express": "^5.2.1",
+    "graphql": "^16.14.0"
+  }
+}
