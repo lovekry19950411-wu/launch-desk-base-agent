@@ -1,0 +1,122 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Launch Desk Base Agent Public Proof API",
+    "version": "0.1.0",
+    "description": "Public read-only proof APIs for Launch Desk Base Agent. These endpoints expose safe Base Sepolia, x402, and readiness proof data without private keys or mainnet spending controls."
+  },
+  "servers": [
+    {
+      "url": "https://base-agent-v2.vercel.app"
+    }
+  ],
+  "paths": {
+    "/api/status": {
+      "get": {
+        "summary": "Get public agent status",
+        "description": "Returns public Base Sepolia agent status, Builder Code, and safe wallet provider metadata.",
+        "responses": {
+          "200": {
+            "description": "Public agent status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/proof": {
+      "get": {
+        "summary": "Get public x402 proof",
+        "description": "Returns the public x402 unlock proof snapshot and Launch Desk readiness preview.",
+        "responses": {
+          "200": {
+            "description": "Public proof snapshot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProofResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StatusResponse": {
+        "type": "object",
+        "required": ["ok", "project", "mode", "status", "builderCode", "network", "agent"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "project": { "type": "string" },
+          "mode": { "type": "string" },
+          "status": { "type": "string" },
+          "builderCode": { "type": "string" },
+          "network": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "caip2": { "type": "string" },
+              "chainId": { "type": "integer" }
+            }
+          },
+          "agent": {
+            "type": "object",
+            "properties": {
+              "walletProvider": { "type": "string" },
+              "addressPreview": { "type": "string" },
+              "mainnetSpending": { "type": "boolean" },
+              "contractDeployAttempted": { "type": "boolean" }
+            }
+          }
+        }
+      },
+      "ProofResponse": {
+        "type": "object",
+        "required": ["ok", "project", "mode", "x402", "readiness", "safety"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "project": { "type": "string" },
+          "mode": { "type": "string" },
+          "x402": {
+            "type": "object",
+            "properties": {
+              "network": { "type": "string" },
+              "price": { "type": "string" },
+              "unpaidStatus": { "type": "integer" },
+              "paidStatus": { "type": "integer" },
+              "transaction": { "type": "string" },
+              "receiver": { "type": "string" }
+            }
+          },
+          "readiness": {
+            "type": "object",
+            "properties": {
+              "score": { "type": "integer" },
+              "riskLevel": { "type": "string" },
+              "actions": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "safety": {
+            "type": "object",
+            "properties": {
+              "mainnetSpending": { "type": "boolean" },
+              "privateKeysExposed": { "type": "boolean" },
+              "productionApiCalled": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

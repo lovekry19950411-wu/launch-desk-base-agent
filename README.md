@@ -21,6 +21,7 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 - Base Agent GitHub: `https://github.com/lovekry19950411-wu/launch-desk-base-agent`
 - Public status API: `https://base-agent-v2.vercel.app/api/status`
 - Public proof API: `https://base-agent-v2.vercel.app/api/proof`
+- OpenAPI spec: `https://base-agent-v2.vercel.app/openapi.json`
 - Launch Desk product demo: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
 - Launch Desk branch: `https://github.com/lovekry19950411-wu/launch-desk/tree/base-miniapp`
 - Builder Code: `bc_9jnnvjew`

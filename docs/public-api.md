@@ -10,6 +10,12 @@ They do not expose private keys, wallet secrets, production API keys, or mainnet
 https://base-agent-v2.vercel.app
 ```
 
+## OpenAPI
+
+```text
+https://base-agent-v2.vercel.app/openapi.json
+```
+
 ## GET /api/status
 
 Returns the public agent status.
