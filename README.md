@@ -2,9 +2,9 @@
 
 Base Agent v2 is the Base-native agent track for Launch Desk.
 
-It proves the path from AI workflow runtime to a wallet-enabled Base agent, starting with Base Sepolia, faucet funding, and x402 paid API unlocks before any mainnet spending or smart contract deployment.
+It proves the path from AI workflow runtime to a wallet-enabled Base agent, starting with Base Sepolia, faucet funding, public proof APIs, and x402 paid API unlocks before any mainnet spending or smart contract deployment.
 
-## Current purpose
+## Current Purpose
 
 This folder documents and tests the Base agent path without mainnet spending or contract deployment.
 
@@ -15,15 +15,17 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 - what can be tested for free on Base Sepolia
 - what should wait until funding or revenue exists
 
-## Current live demo
+## Current Live Demo
 
-- Product demo: Launch Desk
-- Base branch: `base-miniapp`
-- GitHub: `https://github.com/lovekry19950411-wu/launch-desk/tree/base-miniapp`
-- Vercel: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
+- Base Agent site: `https://base-agent-v2.vercel.app`
+- Base Agent GitHub: `https://github.com/lovekry19950411-wu/launch-desk-base-agent`
+- Public status API: `https://base-agent-v2.vercel.app/api/status`
+- Public proof API: `https://base-agent-v2.vercel.app/api/proof`
+- Launch Desk product demo: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
+- Launch Desk branch: `https://github.com/lovekry19950411-wu/launch-desk/tree/base-miniapp`
 - Builder Code: `bc_9jnnvjew`
 
-## Public status page
+## Public Status Page
 
 This repo includes a tiny static `index.html` for Vercel deployment and project verification.
 
@@ -32,10 +34,15 @@ It is intentionally separate from the agent scripts:
 - safe public metadata only
 - no private keys
 - no production wallet secret
-- no backend dependency
-- no change to the CDP or x402 test flow
+- no browser-side signing
+- no change to the CDP or x402 local test flow
 
-## Free-first scope
+The page also exposes safe public proof APIs:
+
+- `GET /api/status`
+- `GET /api/proof`
+
+## Free-first Scope
 
 The current phase should stay free or near-free:
 
@@ -44,19 +51,22 @@ The current phase should stay free or near-free:
 - no contract deployment
 - no production private key
 - local x402 paid API testing on Base Sepolia only
+- public proof APIs for review
 - no database requirement
 
-## What this pack contains
+## What This Pack Contains
 
 - `docs/agent-architecture.md` - Base agent architecture narrative
 - `docs/free-now-paid-later.md` - free-first roadmap and paid-later checklist
 - `docs/grant-submission-base.md` - human-friendly Base application text
+- `docs/public-api.md` - public status/proof API reference
+- `docs/submission-checklist.md` - review and grant submission checklist
 - `scripts/check-base-proof.mjs` - local non-spending proof summary
 - `scripts/base-agent-chat.mjs` - simple Chinese chat shell for wallet status and faucet actions
 - `scripts/x402-test-readiness.mjs` - local x402 paid API unlock test
 - `.env.example` - placeholder environment structure only
 
-## How to run the local proof
+## How To Run The Local Proof
 
 ```bash
 node scripts/check-base-proof.mjs
@@ -64,7 +74,7 @@ node scripts/check-base-proof.mjs
 
 This script does not send transactions, deploy contracts, or call paid APIs.
 
-## How to test the actual Base agent status
+## How To Test The Actual Base Agent Status
 
 ```bash
 npm install
@@ -74,7 +84,7 @@ npm run agent:status
 This connects to the CDP wallet provider and reads wallet status only.
 It does not transfer funds, request faucet funds, or deploy contracts.
 
-## Chat mode
+## Chat Mode
 
 ```bash
 npm run agent:chat
@@ -88,9 +98,9 @@ Supported Chinese prompts:
 - `幫我領 USDC`
 - `exit`
 
-Chat mode still stays on Base Sepolia and does not touch mainnet.
+Chat mode stays on Base Sepolia and does not touch mainnet.
 
-## x402 paid API test
+## x402 Paid API Test
 
 Bootstrap a local Base Sepolia payer wallet:
 
