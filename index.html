@@ -587,51 +587,38 @@
       const runtimeState = document.querySelector("#runtimeState");
       const outputGrid = document.querySelector("#outputGrid");
 
-      const flows = {
-        wallet: [
-          ["initializing", "cdp-wallet-provider boot sequence started"],
-          ["validating", "network locked to base-sepolia / eip155:84532"],
-          ["reading", "agent wallet resolved: 0x1d1c...FcCc"],
-          ["finalized", "wallet provider ready / no mainnet action attempted"],
-        ],
-        x402: [
-          ["initializing", "launch-readiness endpoint protected"],
-          ["queued", "unsigned request returned HTTP 402 Payment Required"],
-          ["settling", "test USDC payment submitted through x402 facilitator"],
-          ["finalized", "payment settled / tx 0x6560...fe8f / API unlocked"],
-        ],
-        readiness: [
-          ["initializing", "launch brief routed into readiness engine"],
-          ["analyzing", "risk register and launch blockers generated"],
-          ["streaming", "owner checklist and priority actions assembled"],
-          ["finalized", "readiness preview complete / score 82 / medium risk"],
-        ],
-      };
-
-      const outputs = {
-        wallet: [
-          ["Provider", "CDP EVM"],
-          ["Network", "Base Sepolia"],
-          ["Mode", "read-only proof"],
-        ],
-        x402: [
-          ["Unpaid", "HTTP 402"],
-          ["Paid", "HTTP 200"],
-          ["Asset", "test USDC"],
-        ],
-        readiness: [
-          ["Score", "82%"],
-          ["Risk", "medium"],
-          ["Actions", "3 generated"],
-        ],
+      const fallback = {
+        status: {
+          agent: { walletProvider: "cdp_evm_wallet_provider", addressPreview: "0x1d1c...FcCc" },
+          network: { name: "Base Sepolia", caip2: "eip155:84532" },
+        },
+        proof: {
+          x402: {
+            unpaidStatus: 402,
+            paidStatus: 200,
+            price: "$0.001 test USDC",
+            transaction: "0x6560...fe8f",
+          },
+          readiness: { score: 82, riskLevel: "medium", actions: ["A", "B", "C"] },
+        },
       };
 
       function now() {
         return new Date().toLocaleTimeString("en-GB", { hour12: false });
       }
 
-      function setOutputs(type) {
-        outputGrid.innerHTML = outputs[type]
+      async function fetchJson(path, fallbackValue) {
+        try {
+          const response = await fetch(path, { headers: { accept: "application/json" } });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return await response.json();
+        } catch {
+          return fallbackValue;
+        }
+      }
+
+      function setOutputs(items) {
+        outputGrid.innerHTML = items
           .map(([label, value]) => `<div class="output-chip"><span>${label}</span><strong>${value}</strong></div>`)
           .join("");
       }
@@ -645,11 +632,61 @@
         while (logStream.children.length > 8) logStream.removeChild(logStream.firstElementChild);
       }
 
+      function buildFlow(type, status, proof) {
+        if (type === "wallet") {
+          return {
+            outputs: [
+              ["Provider", "CDP EVM"],
+              ["Network", status.network.name],
+              ["Mode", "read-only API"],
+            ],
+            steps: [
+              ["initializing", "fetching /api/status public agent state"],
+              ["validating", `network locked to ${status.network.caip2}`],
+              ["reading", `agent wallet resolved: ${status.agent.addressPreview}`],
+              ["finalized", "wallet provider ready / no mainnet action attempted"],
+            ],
+          };
+        }
+
+        if (type === "x402") {
+          return {
+            outputs: [
+              ["Unpaid", `HTTP ${proof.x402.unpaidStatus}`],
+              ["Paid", `HTTP ${proof.x402.paidStatus}`],
+              ["Asset", "test USDC"],
+            ],
+            steps: [
+              ["initializing", "fetching /api/proof x402 settlement record"],
+              ["queued", `unsigned request returned HTTP ${proof.x402.unpaidStatus} Payment Required`],
+              ["settling", `payment proof found at ${proof.x402.price}`],
+              ["finalized", `payment settled / tx ${proof.x402.transaction.slice(0, 8)}...${proof.x402.transaction.slice(-4)} / API unlocked`],
+            ],
+          };
+        }
+
+        return {
+          outputs: [
+            ["Score", `${proof.readiness.score}%`],
+            ["Risk", proof.readiness.riskLevel],
+            ["Actions", `${proof.readiness.actions.length} generated`],
+          ],
+          steps: [
+            ["initializing", "fetching /api/proof readiness snapshot"],
+            ["analyzing", "risk register and launch blockers generated"],
+            ["streaming", "owner checklist and priority actions assembled"],
+            ["finalized", `readiness preview complete / score ${proof.readiness.score} / ${proof.readiness.riskLevel} risk`],
+          ],
+        };
+      }
+
       async function runFlow(type) {
-        const steps = flows[type];
+        const status = await fetchJson("/api/status", fallback.status);
+        const proof = await fetchJson("/api/proof", fallback.proof);
+        const { steps, outputs } = buildFlow(type, status, proof);
         logStream.innerHTML = "";
         runtimeState.textContent = "running";
-        setOutputs(type);
+        setOutputs(outputs);
 
         for (let i = 0; i < steps.length; i += 1) {
           const [state, message] = steps[i];
