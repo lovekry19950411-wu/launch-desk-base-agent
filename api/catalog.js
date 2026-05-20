@@ -49,6 +49,13 @@ export default function handler(_request, response) {
         summary: "Append Builder Code to real Base transactions when mainnet testing starts.",
         freePhase: false,
       },
+      {
+        id: "workflow-proof-contract",
+        endpoint: "contracts/LaunchWorkflowProof.sol",
+        status: "draft",
+        summary: "Minimal smart contract for recording Launch Desk workflow proof hashes on Base Sepolia.",
+        freePhase: true,
+      },
     ],
     safety: {
       privateKeysExposed: false,

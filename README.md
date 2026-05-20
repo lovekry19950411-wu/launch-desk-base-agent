@@ -65,6 +65,7 @@ The current phase should stay free or near-free:
 - `docs/free-now-paid-later.md` - free-first roadmap and paid-later checklist
 - `docs/grant-submission-base.md` - human-friendly Base application text
 - `docs/public-api.md` - public status/proof API reference
+- `docs/contract-plan.md` - Base Sepolia workflow proof contract plan
 - `docs/roadmap.md` - phased roadmap from proof API to paid Base agent
 - `docs/submission-checklist.md` - review and grant submission checklist
 - `scripts/check-base-proof.mjs` - local non-spending proof summary
@@ -87,6 +88,38 @@ npm run verify:api
 ```
 
 This validates the public Vercel API handlers locally: catalog, status, proof, and simulated demo run.
+
+## Workflow Proof Contract
+
+The first smart contract draft is:
+
+```text
+contracts/LaunchWorkflowProof.sol
+```
+
+It records compact AI workflow proof data onchain:
+
+- run ID
+- project name
+- readiness score
+- risk level
+- output hash
+- agent address
+- timestamp
+
+Generate a sample payload:
+
+```bash
+npm run contract:sample
+```
+
+This does not deploy a contract or send a transaction.
+
+Deployment plan:
+
+```text
+docs/contract-plan.md
+```
 
 ## How To Test The Actual Base Agent Status
 

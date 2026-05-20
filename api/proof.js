@@ -26,6 +26,14 @@ export default function handler(_request, response) {
         "Prepare x402 API docs before public beta.",
       ],
     },
+    contract: {
+      status: "draft",
+      name: "LaunchWorkflowProof",
+      network: "Base Sepolia",
+      deployed: false,
+      sourcePath: "contracts/LaunchWorkflowProof.sol",
+      purpose: "Record AI workflow proof metadata and output hashes onchain.",
+    },
     agentSteps: [
       {
         id: "wallet-status",
