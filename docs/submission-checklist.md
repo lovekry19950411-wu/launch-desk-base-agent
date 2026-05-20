@@ -6,8 +6,11 @@ Use this checklist when submitting Launch Desk Base Agent to Base, Talent, MiniP
 
 - Website: `https://base-agent-v2.vercel.app`
 - GitHub: `https://github.com/lovekry19950411-wu/launch-desk-base-agent`
+- Public capability catalog: `https://base-agent-v2.vercel.app/api/catalog`
 - Public status API: `https://base-agent-v2.vercel.app/api/status`
 - Public proof API: `https://base-agent-v2.vercel.app/api/proof`
+- Public demo run API: `https://base-agent-v2.vercel.app/api/run-demo`
+- OpenAPI spec: `https://base-agent-v2.vercel.app/openapi.json`
 - Builder Code: `bc_9jnnvjew`
 
 ## One-line Description
@@ -32,6 +35,7 @@ Launch Desk Base Agent is an early Base-native AI agent prototype. It demonstrat
 - Base Sepolia proof is already working
 - x402 payment unlock was tested
 - The agent has public status/proof APIs
+- The agent exposes a public capability catalog and OpenAPI spec
 - No private keys are exposed
 - No mainnet spending was attempted
 - Smart contract deployment is intentionally deferred until it is necessary

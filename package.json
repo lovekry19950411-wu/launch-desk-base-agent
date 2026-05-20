@@ -8,6 +8,7 @@
     "agent:status": "node scripts/base-agent-status.mjs",
     "agent:faucet": "node scripts/base-agent-faucet.mjs",
     "proof": "node scripts/check-base-proof.mjs",
+    "verify:api": "node scripts/verify-public-api.mjs",
     "x402:init-payer": "node scripts/x402-init-payer.mjs",
     "x402:test": "node scripts/x402-test-readiness.mjs"
   },

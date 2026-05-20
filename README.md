@@ -19,6 +19,7 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 
 - Base Agent site: `https://base-agent-v2.vercel.app`
 - Base Agent GitHub: `https://github.com/lovekry19950411-wu/launch-desk-base-agent`
+- Public capability catalog: `https://base-agent-v2.vercel.app/api/catalog`
 - Public status API: `https://base-agent-v2.vercel.app/api/status`
 - Public proof API: `https://base-agent-v2.vercel.app/api/proof`
 - Public demo run API: `https://base-agent-v2.vercel.app/api/run-demo`
@@ -42,6 +43,7 @@ It is intentionally separate from the agent scripts:
 The page also exposes safe public proof APIs:
 
 - `GET /api/status`
+- `GET /api/catalog`
 - `GET /api/proof`
 - `POST /api/run-demo`
 
@@ -78,6 +80,14 @@ node scripts/check-base-proof.mjs
 
 This script does not send transactions, deploy contracts, or call paid APIs.
 
+## Verify Public API Handlers
+
+```bash
+npm run verify:api
+```
+
+This validates the public Vercel API handlers locally: catalog, status, proof, and simulated demo run.
+
 ## How To Test The Actual Base Agent Status
 
 ```bash
@@ -103,6 +113,26 @@ Supported Chinese prompts:
 - `exit`
 
 Chat mode stays on Base Sepolia and does not touch mainnet.
+
+## Public API Showcase
+
+The first free phase exposes reviewer-friendly APIs that other agents, dashboards, or funding reviewers can inspect without secrets:
+
+```bash
+curl https://base-agent-v2.vercel.app/api/catalog
+curl https://base-agent-v2.vercel.app/api/status
+curl https://base-agent-v2.vercel.app/api/proof
+```
+
+Run the simulated agent workflow:
+
+```bash
+curl -X POST https://base-agent-v2.vercel.app/api/run-demo \
+  -H "content-type: application/json" \
+  -d "{\"productSummary\":\"Launch Desk Base Agent demo\",\"targetAudience\":\"Base builders\"}"
+```
+
+These public endpoints are intentionally read-only or simulated. They do not spend funds, expose private keys, deploy contracts, or sign transactions in the browser.
 
 ## x402 Paid API Test
 

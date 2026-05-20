@@ -16,6 +16,38 @@ https://base-agent-v2.vercel.app
 https://base-agent-v2.vercel.app/openapi.json
 ```
 
+## GET /api/catalog
+
+Returns the public agent capability catalog.
+
+```bash
+curl https://base-agent-v2.vercel.app/api/catalog
+```
+
+Response shape:
+
+```json
+{
+  "ok": true,
+  "project": "Launch Desk Base Agent",
+  "mode": "public-agent-catalog",
+  "builderCode": "bc_9jnnvjew",
+  "network": {
+    "name": "Base Sepolia",
+    "caip2": "eip155:84532",
+    "productionMainnet": false
+  },
+  "capabilities": [
+    {
+      "id": "agent-status",
+      "endpoint": "GET /api/status",
+      "status": "live",
+      "freePhase": true
+    }
+  ]
+}
+```
+
 ## GET /api/status
 
 Returns the public agent status.

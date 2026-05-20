@@ -29,6 +29,24 @@
         }
       }
     },
+    "/api/catalog": {
+      "get": {
+        "summary": "Get public agent capability catalog",
+        "description": "Returns the public-safe list of live and planned Launch Desk Base Agent capabilities.",
+        "responses": {
+          "200": {
+            "description": "Public agent capability catalog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/proof": {
       "get": {
         "summary": "Get public x402 proof",
@@ -82,6 +100,48 @@
   },
   "components": {
     "schemas": {
+      "CatalogResponse": {
+        "type": "object",
+        "required": ["ok", "project", "mode", "baseUrl", "capabilities", "safety"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "project": { "type": "string" },
+          "mode": { "type": "string" },
+          "description": { "type": "string" },
+          "baseUrl": { "type": "string" },
+          "builderCode": { "type": "string" },
+          "network": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "caip2": { "type": "string" },
+              "productionMainnet": { "type": "boolean" }
+            }
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "endpoint": { "type": "string" },
+                "status": { "type": "string" },
+                "summary": { "type": "string" },
+                "freePhase": { "type": "boolean" }
+              }
+            }
+          },
+          "safety": {
+            "type": "object",
+            "properties": {
+              "privateKeysExposed": { "type": "boolean" },
+              "mainnetSpending": { "type": "boolean" },
+              "contractDeployAttempted": { "type": "boolean" },
+              "browserSigning": { "type": "boolean" }
+            }
+          }
+        }
+      },
       "StatusResponse": {
         "type": "object",
         "required": ["ok", "project", "mode", "status", "builderCode", "network", "agent"],

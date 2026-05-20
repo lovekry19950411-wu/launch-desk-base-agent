@@ -20,7 +20,9 @@ export default function handler(_request, response) {
     links: {
       website: "https://base-agent-v2.vercel.app",
       github: "https://github.com/lovekry19950411-wu/launch-desk-base-agent",
+      catalog: "https://base-agent-v2.vercel.app/api/catalog",
+      openapi: "https://base-agent-v2.vercel.app/openapi.json",
     },
-    updatedAt: "2026-05-20",
+    updatedAt: "2026-05-21",
   });
 }
