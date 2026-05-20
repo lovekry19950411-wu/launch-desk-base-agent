@@ -8,6 +8,8 @@
     "agent:status": "node scripts/base-agent-status.mjs",
     "agent:faucet": "node scripts/base-agent-faucet.mjs",
     "contract:sample": "node scripts/contract-proof-sample.mjs",
+    "contract:deploy:sepolia": "node scripts/deploy-workflow-proof.mjs",
+    "contract:record:sepolia": "node scripts/record-workflow-proof.mjs",
     "proof": "node scripts/check-base-proof.mjs",
     "verify:api": "node scripts/verify-public-api.mjs",
     "x402:init-payer": "node scripts/x402-init-payer.mjs",
@@ -21,5 +23,8 @@
     "@x402/fetch": "^2.12.0",
     "express": "^5.2.1",
     "graphql": "^16.14.0"
+  },
+  "devDependencies": {
+    "solc": "^0.8.35"
   }
 }

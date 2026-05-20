@@ -37,6 +37,7 @@ Launch Desk Base Agent is an early Base-native AI agent prototype. It demonstrat
 - The agent has public status/proof APIs
 - The agent exposes a public capability catalog and OpenAPI spec
 - The Base Sepolia workflow proof contract has a minimal audited-by-reading draft
+- The workflow proof contract is deployed on Base Sepolia
 - No private keys are exposed
 - No mainnet spending was attempted
 - Smart contract deployment is intentionally deferred until it is necessary
@@ -49,7 +50,7 @@ This is still an early prototype. The current goal is to prove the Base-native A
 
 - No production mainnet payment yet
 - No smart contract deployment yet
-- Contract draft exists, but deployment is intentionally deferred until Base Sepolia deploy is confirmed
+- Contract is deployed on Base Sepolia, but not yet on Base mainnet
 - Agent console uses safe public proof APIs, not live wallet signing in the browser
 - x402 settlement proof is from the verified Base Sepolia test flow
 

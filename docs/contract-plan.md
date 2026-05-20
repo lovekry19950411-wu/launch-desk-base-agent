@@ -63,12 +63,23 @@ Status: current.
 
 ### Phase 2: Base Sepolia deployment
 
-Requires testnet ETH only.
+Status: complete.
+
+Required testnet ETH only.
 
 - Deploy `LaunchWorkflowProof` to Base Sepolia
 - Record one sample workflow run
 - Add contract address and tx hash to `/api/proof`
 - Add Basescan link to the public page
+
+Deployment:
+
+```text
+Contract: 0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+Deploy tx: 0x6bd25a0f763666ceb886df9b0bd55a9d11fec34046a2e0de4c2682fc5f0d6591
+First successful record tx: 0x8618325b87c04c2823ff2c8afce81d3a321eac9e040da7b3a982172433faa879
+Basescan: https://sepolia.basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+```
 
 ### Phase 3: Base mainnet deployment
 

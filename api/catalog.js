@@ -52,11 +52,18 @@ export default function handler(_request, response) {
       {
         id: "workflow-proof-contract",
         endpoint: "contracts/LaunchWorkflowProof.sol",
-        status: "draft",
-        summary: "Minimal smart contract for recording Launch Desk workflow proof hashes on Base Sepolia.",
+        status: "deployed",
+        summary: "Minimal smart contract deployed on Base Sepolia for recording Launch Desk workflow proof hashes.",
         freePhase: true,
       },
     ],
+    contract: {
+      name: "LaunchWorkflowProof",
+      network: "Base Sepolia",
+      address: "0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+      runCount: 2,
+      baseScanUrl: "https://sepolia.basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+    },
     safety: {
       privateKeysExposed: false,
       mainnetSpending: false,

@@ -97,6 +97,14 @@ The first smart contract draft is:
 contracts/LaunchWorkflowProof.sol
 ```
 
+Base Sepolia deployment:
+
+```text
+Contract: 0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+Deploy tx: 0x6bd25a0f763666ceb886df9b0bd55a9d11fec34046a2e0de4c2682fc5f0d6591
+Basescan: https://sepolia.basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+```
+
 It records compact AI workflow proof data onchain:
 
 - run ID
@@ -114,6 +122,18 @@ npm run contract:sample
 ```
 
 This does not deploy a contract or send a transaction.
+
+Deploy to Base Sepolia:
+
+```bash
+npm run contract:deploy:sepolia
+```
+
+Record another workflow proof:
+
+```bash
+npm run contract:record:sepolia -- --contract=0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+```
 
 Deployment plan:
 
