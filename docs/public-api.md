@@ -87,3 +87,15 @@ The public API is currently a proof layer only.
 - No database
 
 The next production step is to replace this proof snapshot with live read-only status and a real x402-protected readiness endpoint.
+
+## POST /api/run-demo
+
+Runs a public-safe simulated agent run.
+
+```bash
+curl -X POST https://base-agent-v2.vercel.app/api/run-demo \
+  -H "content-type: application/json" \
+  -d "{\"productSummary\":\"Launch Desk Base Agent demo\"}"
+```
+
+This endpoint returns runtime events and a readiness result. It does not spend funds, expose private keys, deploy contracts, or call production APIs.

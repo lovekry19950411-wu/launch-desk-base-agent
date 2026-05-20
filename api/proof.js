@@ -1,9 +1,14 @@
 export default function handler(_request, response) {
+  const runId = "run_base_agent_20260520_001";
+
   response.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
   response.status(200).json({
     ok: true,
     project: "Launch Desk Base Agent",
     mode: "public-proof",
+    runId,
+    proofType: "base-sepolia-x402-readiness-proof",
+    lastVerifiedAt: "2026-05-20T14:48:46.234Z",
     x402: {
       network: "eip155:84532",
       price: "$0.001 test USDC",
@@ -21,6 +26,46 @@ export default function handler(_request, response) {
         "Prepare x402 API docs before public beta.",
       ],
     },
+    agentSteps: [
+      {
+        id: "wallet-status",
+        state: "finalized",
+        summary: "CDP wallet provider resolved on Base Sepolia.",
+      },
+      {
+        id: "x402-unlock",
+        state: "finalized",
+        summary: "Unpaid request returned 402 and paid request returned 200.",
+      },
+      {
+        id: "readiness-preview",
+        state: "finalized",
+        summary: "Launch readiness score and actions generated from proof snapshot.",
+      },
+    ],
+    events: [
+      {
+        time: "14:48:42",
+        state: "initializing",
+        message: "launch-readiness endpoint protected",
+      },
+      {
+        time: "14:48:43",
+        state: "queued",
+        message: "unsigned request returned HTTP 402 Payment Required",
+      },
+      {
+        time: "14:48:45",
+        state: "settling",
+        message: "test USDC payment submitted through x402 facilitator",
+      },
+      {
+        time: "14:48:46",
+        state: "finalized",
+        message: "payment settled and readiness API unlocked",
+      },
+    ],
+    nextRequiredAction: "Promote from public proof API to a real x402-protected readiness endpoint when ready.",
     safety: {
       mainnetSpending: false,
       privateKeysExposed: false,

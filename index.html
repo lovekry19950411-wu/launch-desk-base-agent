@@ -604,6 +604,11 @@
         },
       };
 
+      const demoInput = {
+        productSummary: "Launch Desk Base Agent public runtime demo",
+        targetAudience: "Base builders, AI agent reviewers, and prototype customers",
+      };
+
       function now() {
         return new Date().toLocaleTimeString("en-GB", { hour12: false });
       }
@@ -611,6 +616,20 @@
       async function fetchJson(path, fallbackValue) {
         try {
           const response = await fetch(path, { headers: { accept: "application/json" } });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return await response.json();
+        } catch {
+          return fallbackValue;
+        }
+      }
+
+      async function postJson(path, body, fallbackValue) {
+        try {
+          const response = await fetch(path, {
+            method: "POST",
+            headers: { accept: "application/json", "content-type": "application/json" },
+            body: JSON.stringify(body),
+          });
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           return await response.json();
         } catch {
@@ -633,7 +652,7 @@
         while (logStream.children.length > 8) logStream.removeChild(logStream.firstElementChild);
       }
 
-      function buildFlow(type, status, proof) {
+      function buildFlow(type, status, proof, runDemo) {
         if (type === "wallet") {
           return {
             outputs: [
@@ -668,23 +687,31 @@
 
         return {
           outputs: [
-            ["Score", `${proof.readiness.score}%`],
-            ["Risk", proof.readiness.riskLevel],
-            ["Actions", `${proof.readiness.actions.length} generated`],
+            ["Score", `${runDemo.result.readinessScore}%`],
+            ["Risk", runDemo.result.riskLevel],
+            ["Actions", `${runDemo.result.ownerActions.length} generated`],
           ],
-          steps: [
-            ["initializing", "fetching /api/proof readiness snapshot"],
-            ["analyzing", "risk register and launch blockers generated"],
-            ["streaming", "owner checklist and priority actions assembled"],
-            ["finalized", `readiness preview complete / score ${proof.readiness.score} / ${proof.readiness.riskLevel} risk`],
-          ],
+          steps: runDemo.events.map((event) => [event.state, event.message]),
         };
       }
 
       async function runFlow(type) {
         const status = await fetchJson("/api/status", fallback.status);
         const proof = await fetchJson("/api/proof", fallback.proof);
-        const { steps, outputs } = buildFlow(type, status, proof);
+        const runDemo = await postJson("/api/run-demo", demoInput, {
+          result: {
+            readinessScore: proof.readiness.score,
+            riskLevel: proof.readiness.riskLevel,
+            ownerActions: proof.readiness.actions,
+          },
+          events: [
+            { state: "initializing", message: "fetching /api/proof readiness snapshot" },
+            { state: "analyzing", message: "risk register and launch blockers generated" },
+            { state: "streaming", message: "owner checklist and priority actions assembled" },
+            { state: "finalized", message: `readiness preview complete / score ${proof.readiness.score}` },
+          ],
+        });
+        const { steps, outputs } = buildFlow(type, status, proof, runDemo);
         logStream.innerHTML = "";
         runtimeState.textContent = "running";
         setOutputs(outputs);

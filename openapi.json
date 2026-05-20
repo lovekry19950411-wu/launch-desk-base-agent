@@ -46,6 +46,38 @@
           }
         }
       }
+    },
+    "/api/run-demo": {
+      "post": {
+        "summary": "Run a simulated public agent demo",
+        "description": "Accepts a launch brief and returns a public-safe simulated agent run with runtime events and readiness output. This endpoint does not spend funds or call production APIs.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productSummary": { "type": "string" },
+                  "targetAudience": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Simulated agent run",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunDemoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -113,6 +145,46 @@
               "mainnetSpending": { "type": "boolean" },
               "privateKeysExposed": { "type": "boolean" },
               "productionApiCalled": { "type": "boolean" }
+            }
+          }
+        }
+      },
+      "RunDemoResponse": {
+        "type": "object",
+        "required": ["ok", "mode", "runId", "events", "result", "safety"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "mode": { "type": "string" },
+          "runId": { "type": "string" },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "state": { "type": "string" },
+                "message": { "type": "string" }
+              }
+            }
+          },
+          "result": {
+            "type": "object",
+            "properties": {
+              "readinessScore": { "type": "integer" },
+              "riskLevel": { "type": "string" },
+              "paymentMode": { "type": "string" },
+              "ownerActions": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "safety": {
+            "type": "object",
+            "properties": {
+              "mainnetSpending": { "type": "boolean" },
+              "privateKeysExposed": { "type": "boolean" },
+              "productionApiCalled": { "type": "boolean" },
+              "contractDeployAttempted": { "type": "boolean" }
             }
           }
         }
