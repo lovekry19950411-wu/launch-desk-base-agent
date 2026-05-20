@@ -63,6 +63,7 @@ The current phase should stay free or near-free:
 - `docs/free-now-paid-later.md` - free-first roadmap and paid-later checklist
 - `docs/grant-submission-base.md` - human-friendly Base application text
 - `docs/public-api.md` - public status/proof API reference
+- `docs/roadmap.md` - phased roadmap from proof API to paid Base agent
 - `docs/submission-checklist.md` - review and grant submission checklist
 - `scripts/check-base-proof.mjs` - local non-spending proof summary
 - `scripts/base-agent-chat.mjs` - simple Chinese chat shell for wallet status and faucet actions
