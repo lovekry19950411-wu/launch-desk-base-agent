@@ -9,9 +9,9 @@ export default function handler(_request, response) {
     baseUrl: "https://base-agent-v2.vercel.app",
     builderCode: "bc_9jnnvjew",
     network: {
-      name: "Base Sepolia",
-      caip2: "eip155:84532",
-      productionMainnet: false,
+      name: "Base Mainnet + Base Sepolia",
+      caip2: "eip155:8453",
+      productionMainnet: true,
     },
     capabilities: [
       {
@@ -51,23 +51,25 @@ export default function handler(_request, response) {
       },
       {
         id: "workflow-proof-contract",
-        endpoint: "contracts/LaunchWorkflowProof.sol",
+        endpoint: "contracts/LaunchWorkflowProofV2.sol",
         status: "deployed",
-        summary: "Minimal smart contract deployed on Base Sepolia for recording Launch Desk workflow proof hashes.",
-        freePhase: true,
+        summary: "Mainnet smart contract deployed on Base for recording Launch Desk workflow receipt hashes and metadata.",
+        freePhase: false,
       },
     ],
     contract: {
-      name: "LaunchWorkflowProof",
-      network: "Base Sepolia",
+      name: "LaunchWorkflowProofV2",
+      network: "Base Mainnet",
       address: "0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
-      runCount: 2,
-      baseScanUrl: "https://sepolia.basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+      owner: "0xd2592CcC41E96c09D8DBeA98904A82Af2503E69c",
+      agentOperator: "0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc",
+      runCount: 1,
+      baseScanUrl: "https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
     },
     safety: {
       privateKeysExposed: false,
-      mainnetSpending: false,
-      contractDeployAttempted: false,
+      mainnetSpending: true,
+      contractDeployAttempted: true,
       browserSigning: false,
     },
     nextPaidSteps: [

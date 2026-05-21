@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "mode": "deploy-workflow-proof-v2-mainnet",
+  "contract": "LaunchWorkflowProofV2",
+  "deployer": "0xd2592CcC41E96c09D8DBeA98904A82Af2503E69c",
+  "owner": "0xd2592CcC41E96c09D8DBeA98904A82Af2503E69c",
+  "agentOperator": "0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc",
+  "network": {
+    "name": "Base Mainnet",
+    "chainId": 8453,
+    "rpcUrl": "https://mainnet.base.org"
+  },
+  "deployTxHash": "0x9e32fca7e7b9ea09b3527e48e8d68412986e84a4df9a2caaf15b6edb150eaed7",
+  "contractAddress": "0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+  "baseScanUrl": "https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+  "deployTransactionUrl": "https://basescan.org/tx/0x9e32fca7e7b9ea09b3527e48e8d68412986e84a4df9a2caaf15b6edb150eaed7",
+  "firstReceipt": {
+    "txHash": "0xf696d246a0402e7f47d5c2114d2db00648692d6864c7e6f2bbf180ef6001c2bb",
+    "status": "success",
+    "transactionUrl": "https://basescan.org/tx/0xf696d246a0402e7f47d5c2114d2db00648692d6864c7e6f2bbf180ef6001c2bb",
+    "runCount": "1",
+    "workflowIdHash": "0x7e50031e0e04dedbf73f5b4503926731b8431ebc5d5a6415a776dfbd047cc1f4",
+    "outputHash": "0x01592eae43b2fd01dbe0928401f58043434c1e762cd9789cc14f9ce63bdc2aef",
+    "metadataURI": "https://base-agent-v2.vercel.app/api/proof",
+    "workflowOutput": {
+      "runId": "mainnet_receipt_1779341677302",
+      "projectName": "Launch Desk Base Agent",
+      "readinessScore": 82,
+      "riskLevel": "medium",
+      "riskLevelCode": 2,
+      "proof": "Base mainnet AI workflow receipt contract deployed and first workflow proof recorded.",
+      "appUrl": "https://base-agent-v2.vercel.app"
+    }
+  },
+  "gasEstimate": {
+    "deployGas": "693452",
+    "gasPriceWei": "6000000",
+    "estimatedDeployCostEth": "0.000004160712"
+  },
+  "beforeEth": "0.001",
+  "afterEth": "0.00099444629383228",
+  "mainnetDeployment": true
+}

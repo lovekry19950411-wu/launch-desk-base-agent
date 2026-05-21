@@ -9,6 +9,7 @@
     "agent:faucet": "node scripts/base-agent-faucet.mjs",
     "contract:sample": "node scripts/contract-proof-sample.mjs",
     "contract:deploy:sepolia": "node scripts/deploy-workflow-proof.mjs",
+    "contract:deploy:mainnet": "node scripts/deploy-workflow-proof-v2-mainnet.mjs",
     "contract:record:sepolia": "node scripts/record-workflow-proof.mjs",
     "proof": "node scripts/check-base-proof.mjs",
     "verify:api": "node scripts/verify-public-api.mjs",

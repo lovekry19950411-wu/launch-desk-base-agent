@@ -2,11 +2,11 @@
 
 Base Agent v2 is the Base-native agent track for Launch Desk.
 
-It proves the path from AI workflow runtime to a wallet-enabled Base agent, starting with Base Sepolia, faucet funding, public proof APIs, and x402 paid API unlocks before any mainnet spending or smart contract deployment.
+It proves the path from AI workflow runtime to a wallet-enabled Base agent, starting with Base Sepolia, faucet funding, public proof APIs, x402 paid API unlocks, and a Base mainnet workflow receipt contract.
 
 ## Current Purpose
 
-This folder documents and tests the Base agent path without mainnet spending or contract deployment.
+This folder documents and tests the Base agent path from testnet proof into a minimal Base mainnet contract receipt.
 
 It is meant to support grant, builder, and ecosystem review conversations by showing:
 
@@ -27,6 +27,7 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 - Launch Desk product demo: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
 - Launch Desk branch: `https://github.com/lovekry19950411-wu/launch-desk/tree/base-miniapp`
 - Builder Code: `bc_9jnnvjew`
+- Base mainnet contract: `https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb`
 
 ## Public Status Page
 
@@ -47,17 +48,13 @@ The page also exposes safe public proof APIs:
 - `GET /api/proof`
 - `POST /api/run-demo`
 
-## Free-first Scope
+## Scope
 
-The current phase should stay free or near-free:
-
-- Base Sepolia only
-- no mainnet spending
-- no contract deployment
-- no production private key
-- local x402 paid API testing on Base Sepolia only
-- public proof APIs for review
-- no database requirement
+- Base Sepolia remains the x402 and local wallet test environment.
+- Base mainnet now has a minimal workflow receipt contract.
+- Public proof APIs remain safe and do not expose private keys.
+- No browser-side signing is used.
+- No database is required.
 
 ## What This Pack Contains
 
@@ -105,6 +102,17 @@ Deploy tx: 0x6bd25a0f763666ceb886df9b0bd55a9d11fec34046a2e0de4c2682fc5f0d6591
 Basescan: https://sepolia.basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
 ```
 
+Base mainnet V2 deployment:
+
+```text
+Contract: 0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+Owner: 0xd2592CcC41E96c09D8DBeA98904A82Af2503E69c
+Agent operator: 0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc
+Deploy tx: 0x9e32fca7e7b9ea09b3527e48e8d68412986e84a4df9a2caaf15b6edb150eaed7
+First receipt tx: 0xf696d246a0402e7f47d5c2114d2db00648692d6864c7e6f2bbf180ef6001c2bb
+Basescan: https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+```
+
 It records compact AI workflow proof data onchain:
 
 - run ID
@@ -133,6 +141,12 @@ Record another workflow proof:
 
 ```bash
 npm run contract:record:sepolia -- --contract=0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+```
+
+Deploy the V2 mainnet receipt contract:
+
+```bash
+npm run contract:deploy:mainnet
 ```
 
 Deployment plan:
