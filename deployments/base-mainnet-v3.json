@@ -1,0 +1,46 @@
+{
+  "ok": true,
+  "mode": "deploy-workflow-proof-v3-mainnet",
+  "contract": "LaunchWorkflowProofV3",
+  "deployer": "0xd2592CcC41E96c09D8DBeA98904A82Af2503E69c",
+  "owner": "0xc97785f7EEaBafFDE32436842AD4824cB4141f8b",
+  "agentOperator": "0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc",
+  "network": {
+    "name": "Base Mainnet",
+    "chainId": 8453,
+    "rpcUrl": "https://mainnet.base.org"
+  },
+  "contractAddress": "0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
+  "baseScanUrl": "https://basescan.org/address/0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
+  "runCount": 0,
+  "firstReceiptStatus": "pending-owner-or-agent-operator-signature",
+  "note": "V3 is founder-owned. The deployment wallet paid gas, but cannot record receipts because it is not owner or agentOperator.",
+  "mainnetDeployment": true,
+  "founderOwned": true,
+  "firstReceipt": {
+    "txHash": "0x980370a0a67a456d519df5cca8fb6da220e0e4f53d5c1f7f1c91edf619e8d76a",
+    "status": "success",
+    "transactionUrl": "https://basescan.org/tx/0x980370a0a67a456d519df5cca8fb6da220e0e4f53d5c1f7f1c91edf619e8d76a",
+    "runCount": "0",
+    "runCountBefore": "0",
+    "workflowIdHash": "0x353c3dab859b508a4615832f910e4eaff91f0cb2f744dd9202e5f3babf33402e",
+    "outputHash": "0xc6fd19c2f56a4a9a62b7765556a90a40db96f33244464ced04fcc701555afc9e",
+    "metadataURI": "https://base-agent-v2.vercel.app/api/proof",
+    "workflowOutput": {
+      "runId": "agent_operator_mainnet_receipt_1779346434265",
+      "projectName": "Launch Desk Base Agent",
+      "readinessScore": 84,
+      "riskLevel": "medium",
+      "riskLevelCode": 2,
+      "proof": "AI operator wallet recorded a founder-owned Launch Desk workflow receipt on Base mainnet.",
+      "appUrl": "https://base-agent-v2.vercel.app",
+      "owner": "0xc97785f7EEaBafFDE32436842AD4824cB4141f8b",
+      "agentOperator": "0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc",
+      "contractAddress": "0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65"
+    },
+    "recordedBy": "0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc",
+    "keySetName": "ed25519"
+  },
+  "aiOperatorRecorded": true,
+  "lastUpdatedAt": "2026-05-21T06:53:55.523Z"
+}

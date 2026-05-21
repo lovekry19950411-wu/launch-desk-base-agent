@@ -58,13 +58,13 @@ export default function handler(_request, response) {
       },
     ],
     contract: {
-      name: "LaunchWorkflowProofV2",
+      name: "LaunchWorkflowProofV3",
       network: "Base Mainnet",
-      address: "0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
-      owner: "0xd2592CcC41E96c09D8DBeA98904A82Af2503E69c",
+      address: "0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
+      owner: "0xc97785f7EEaBafFDE32436842AD4824cB4141f8b",
       agentOperator: "0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc",
-      runCount: 1,
-      baseScanUrl: "https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+      runCount: 0,
+      baseScanUrl: "https://basescan.org/address/0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
     },
     safety: {
       privateKeysExposed: false,

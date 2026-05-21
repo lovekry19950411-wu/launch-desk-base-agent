@@ -27,7 +27,7 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 - Launch Desk product demo: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
 - Launch Desk branch: `https://github.com/lovekry19950411-wu/launch-desk/tree/base-miniapp`
 - Builder Code: `bc_9jnnvjew`
-- Base mainnet contract: `https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb`
+- Base mainnet founder-owned contract: `https://basescan.org/address/0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65`
 
 ## Public Status Page
 
@@ -111,6 +111,15 @@ Agent operator: 0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc
 Deploy tx: 0x9e32fca7e7b9ea09b3527e48e8d68412986e84a4df9a2caaf15b6edb150eaed7
 First receipt tx: 0xf696d246a0402e7f47d5c2114d2db00648692d6864c7e6f2bbf180ef6001c2bb
 Basescan: https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb
+```
+
+Base mainnet V3 founder-owned deployment:
+
+```text
+Contract: 0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65
+Owner: 0xc97785f7EEaBafFDE32436842AD4824cB4141f8b
+Agent operator: 0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc
+Basescan: https://basescan.org/address/0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65
 ```
 
 It records compact AI workflow proof data onchain:

@@ -20,11 +20,11 @@ export default function handler(_request, response) {
     contract: {
       name: "LaunchWorkflowProofV2",
       network: "Base Mainnet",
-      address: "0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
-      ownerPreview: "0xd259...E69c",
+      address: "0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
+      ownerPreview: "0xc977...1f8b",
       agentOperatorPreview: "0x1d1c...FcCc",
-      runCount: 1,
-      baseScanUrl: "https://basescan.org/address/0xfbd1343ce44c8bf056370c222b3f90524a4e1ffb",
+      runCount: 0,
+      baseScanUrl: "https://basescan.org/address/0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
     },
     links: {
       website: "https://base-agent-v2.vercel.app",
