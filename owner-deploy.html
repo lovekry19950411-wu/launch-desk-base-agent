@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="base:app_id" content="6a0cdbb91c1db8c69c491bb1" />
+    <title>Launch Desk Owner Deploy</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080807;
+        --panel: #12110f;
+        --text: #f6f0e6;
+        --muted: #a9a096;
+        --line: rgba(255, 255, 255, 0.1);
+        --gold: #d7b46a;
+        --green: #8bd9a4;
+        --red: #ff9b8b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(215, 180, 106, 0.14), transparent 34rem),
+          var(--bg);
+        color: var(--text);
+      }
+      main {
+        width: min(820px, calc(100vw - 40px));
+        margin: 0 auto;
+        padding: 56px 0;
+      }
+      .eyebrow {
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 14px 0 14px;
+        font-size: clamp(40px, 7vw, 72px);
+        line-height: 0.95;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.75;
+      }
+      .panel {
+        margin-top: 28px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.014));
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 16px;
+        padding: 14px 0;
+        border-top: 1px solid var(--line);
+      }
+      .row:first-child { border-top: 0; }
+      .row span { color: var(--muted); }
+      code {
+        overflow-wrap: anywhere;
+        color: var(--gold);
+        font-family: "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+      }
+      button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 15px 16px;
+        border: 1px solid rgba(215, 180, 106, 0.45);
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(215, 180, 106, 0.26), rgba(215, 180, 106, 0.14));
+        color: var(--text);
+        font: inherit;
+        font-weight: 750;
+        cursor: pointer;
+      }
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.58;
+      }
+      .status {
+        margin-top: 16px;
+        min-height: 92px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(0,0,0,0.28);
+        color: var(--muted);
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+      }
+      .ok { color: var(--green); }
+      .error { color: var(--red); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">Launch Desk / Final Owner Deployment</div>
+      <h1>Deploy from the owner wallet.</h1>
+      <p>
+        This page deploys the same LaunchWorkflowProofV3 contract directly from your Base owner wallet.
+        Use it only when the grant platform requires the smart contract deployer to be your wallet.
+      </p>
+
+      <section class="panel">
+        <div class="row"><span>Required wallet</span><code>0xc97785f7EEaBafFDE32436842AD4824cB4141f8b</code></div>
+        <div class="row"><span>AI operator</span><code>0x1d1ce502DE895c4cB6b946bE172f68B03581FcCc</code></div>
+        <div class="row"><span>Network</span><code>Base Mainnet / chainId 8453</code></div>
+        <button id="deploy">Connect 0xc977...1f8b and deploy final proof contract</button>
+        <div class="status" id="status">Waiting for owner wallet.</div>
+      </section>
+    </main>
+
+    <script>
+      const OWNER_ADDRESS = "0xc97785f7EEaBafFDE32436842AD4824cB4141f8b";
+      const DEPLOY_DATA = "0x60a060405234801561000f575f5ffd5b50604051610c14380380610c1483398101604081905261002e916100c2565b6001600160a01b038216610055576040516349e27cff60e01b815260040160405180910390fd5b6001600160a01b038281166080525f80546001600160a01b03191691831691821781556040517f80ec9c496df6d100542f75e99363f82a2dc09d972f5c943be7e87be7bb66caee908290a350506100f3565b80516001600160a01b03811681146100bd575f5ffd5b919050565b5f5f604083850312156100d3575f5ffd5b6100dc836100a7565b91506100ea602084016100a7565b90509250929050565b608051610afb6101195f395f8181610125015281816102eb015261063e0152610afb5ff3fe608060405234801561000f575f5ffd5b506004361061007a575f3560e01c8063680b8ebb11610058578063680b8ebb146100ee5780638da5cb5b146101205780639196b70014610147578063e1437be014610150575f5ffd5b806308de5e911461007e5780630da18d69146100ad57806314453257146100cd575b5f5ffd5b5f54610090906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b6100c06100bb3660046106cb565b610165565b6040516100a49190610710565b6100e06100db3660046107ef565b6102df565b6040519081526020016100a4565b6101106100fc3660046106cb565b60036020525f908152604090205460ff1681565b60405190151581526020016100a4565b6100907f000000000000000000000000000000000000000000000000000000000000000081565b6100e060015481565b61016361015e3660046108bc565b610633565b005b6101c56040518061012001604052805f81526020015f8152602001606081526020015f61ffff1681526020015f60ff1681526020015f6001600160a01b031681526020015f6001600160a01b031681526020015f81526020015f81525090565b60025f8381526020019081526020015f20604051806101200160405290815f820154815260200160018201548152602001600282018054610205906108dc565b80601f0160208091040260200160405190810160405280929190818152602001828054610231906108dc565b801561027c5780601f106102535761010080835404028352916020019161027c565b820191905f5260205f20905b81548152906001019060200180831161025f57829003601f168201915b5050509183525050600382015461ffff8116602083015260ff6201000082041660408301526001600160a01b036301000000909104811660608301526004830154166080820152600582015460a082015260069091015460c09091015292915050565b5f336001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000161480159061032357505f546001600160a01b03163314155b156103415760405163b5530edd60e01b815260040160405180910390fd5b8961035f5760405163ca1a618760e01b815260040160405180910390fd5b8861037d57604051635ae6c7db60e01b815260040160405180910390fd5b5f87900361039e5760405163128e0ec160e11b815260040160405180910390fd5b60648661ffff1611156103c45760405163197a869360e31b815260040160405180910390fd5b60ff851615806103d7575060038560ff16115b156103f5576040516321e04ed760e11b815260040160405180910390fd5b5f8a81526003602052604090205460ff161561042457604051631b1acdc160e31b815260040160405180910390fd5b60015490506040518061012001604052808b81526020018a815260200189898080601f0160208091040260200160405190810160405280939291908181526020018383808284375f9201919091525050509082525061ffff8816602082015260ff871660408201526060016001600160a01b038616156104a457856104a6565b335b6001600160a01b03168152602001846001600160a01b031681526020018381526020014281525060025f8381526020019081526020015f205f820151815f0155602082015181600101556040820151816002019081610505919061097f565b50606082015160038281018054608086015160a087015161ffff90951662ffffff19909216919091176201000060ff90921691909102176301000000600160b81b03191663010000006001600160a01b039485160217905560c08401516004840180546001600160a01b031916919093161790915560e08301516005830155610100909201516006909101555f8b815260209190915260409020805460ff191660019081179091556105b8908290610a3e565b6001555f81815260026020526040908190206003015490518a918c9184917f2b469bee2f923b59eeb4146f2d0840aa0ebb7e03a52d38be0f13d914b32d19089161061e918e918e918e918e91630100000090046001600160a01b0316908d908d90610a63565b60405180910390a49998505050505050505050565b336001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000161461067c576040516330cd747160e01b815260040160405180910390fd5b5f80546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f80ec9c496df6d100542f75e99363f82a2dc09d972f5c943be7e87be7bb66caee9190a35050565b5f602082840312156106db575f5ffd5b5035919050565b5f81518084528060208401602086015e5f602082860101526020601f19601f83011685010191505092915050565b6020815281516020820152602082015160408201525f604083015161012060608401526107416101408401826106e2565b90506060840151610758608085018261ffff169052565b50608084015160ff811660a08501525060a08401516001600160a01b03811660c08501525060c08401516001600160a01b03811660e08501525060e08401516101008401526101008401516101208401528091505092915050565b803561ffff811681146107c4575f5ffd5b919050565b803560ff811681146107c4575f5ffd5b80356001600160a01b03811681146107c4575f5ffd5b5f5f5f5f5f5f5f5f5f6101008a8c031215610808575f5ffd5b8935985060208a0135975060408a013567ffffffffffffffff81111561082c575f5ffd5b8a01601f81018c1361083c575f5ffd5b803567ffffffffffffffff811115610852575f5ffd5b8c6020828401011115610863575f5ffd5b6020919091019750955061087960608b016107b3565b945061088760808b016107c9565b935061089560a08b016107d9565b92506108a360c08b016107d9565b989b979a50959894979396929550909360e00135919050565b5f602082840312156108cc575f5ffd5b6108d5826107d9565b9392505050565b600181811c908216806108f057607f821691505b60208210810361090e57634e487b7160e01b5f52602260045260245ffd5b50919050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561097a578282111561097a57805f5260205f20601f840160051c602085101561095357505f5b90810190601f840160051c035f5b81811015610976575f83820155600101610961565b5050505b505050565b815167ffffffffffffffff81111561099957610999610914565b6109ad816109a784546108dc565b84610928565b6020601f8211600181146109df575f83156109c85750848201515b5f19600385901b1c1916600184901b178455610a37565b5f84815260208120601f198516915b82811015610a0e57878501518255602094850194600190920191016109ee565b5084821015610a2b57868401515f19600387901b60f8161c191681555b505060018360011b0184555b5050505050565b80820180821115610a5d57634e487b7160e01b5f52601160045260245ffd5b92915050565b60c081528660c0820152868860e08301375f60e088830181019190915261ffff96909616602082015260ff9490941660408501526001600160a01b0392831660608501529116608083015260a0820152601f909201601f19169091010191905056fea264697066735822122055ef629f79e45af6194f81558d87a04af5722b5314ebfc6b4773639fa2eba50b64736f6c63430008230033000000000000000000000000c97785f7eeabaffde32436842ad4824cb4141f8b0000000000000000000000001d1ce502de895c4cb6b946be172f68b03581fccc";
+      const statusBox = document.querySelector("#status");
+      const deployButton = document.querySelector("#deploy");
+
+      function setStatus(message, type = "") {
+        statusBox.className = "status " + type;
+        statusBox.innerHTML = message;
+      }
+
+      async function ensureBaseMainnet() {
+        const chainId = await window.ethereum.request({ method: "eth_chainId" });
+        if (chainId === "0x2105") return;
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0x2105" }],
+          });
+        } catch (error) {
+          if (error.code !== 4902) throw error;
+          await window.ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [{
+              chainId: "0x2105",
+              chainName: "Base",
+              nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+              rpcUrls: ["https://mainnet.base.org"],
+              blockExplorerUrls: ["https://basescan.org"],
+            }],
+          });
+        }
+      }
+
+      deployButton.addEventListener("click", async () => {
+        deployButton.disabled = true;
+        try {
+          if (!window.ethereum) throw new Error("No browser wallet found. Open this page with MetaMask / Coinbase Wallet.");
+          setStatus("Connecting wallet...");
+          await ensureBaseMainnet();
+          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+          const from = accounts[0];
+          if (!from || from.toLowerCase() !== OWNER_ADDRESS.toLowerCase()) {
+            throw new Error("Wrong wallet. Please switch to " + OWNER_ADDRESS + " before deploying.");
+          }
+
+          setStatus("Wallet connected. Please confirm the contract deployment in your wallet.");
+          const txHash = await window.ethereum.request({
+            method: "eth_sendTransaction",
+            params: [{ from, data: DEPLOY_DATA }],
+          });
+          setStatus(
+            'Deployment submitted.<br><br>Tx: <a href="https://basescan.org/tx/' + txHash + '" target="_blank" rel="noopener">' + txHash + "</a><br><br>Wait for confirmation, then copy the new contract address from BaseScan.",
+            "ok",
+          );
+        } catch (error) {
+          setStatus(error.message || String(error), "error");
+          deployButton.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -13,6 +13,7 @@
     "contract:deploy:mainnet:v3": "node scripts/deploy-workflow-proof-v3-mainnet.mjs",
     "contract:fund-agent:mainnet": "node scripts/fund-mainnet-agent-operator.mjs",
     "contract:record:mainnet:v3": "node scripts/record-workflow-proof-v3-agent.mjs",
+    "contract:build-owner-deployer": "node scripts/build-owner-deployer-page.mjs",
     "contract:record:sepolia": "node scripts/record-workflow-proof.mjs",
     "proof": "node scripts/check-base-proof.mjs",
     "verify:api": "node scripts/verify-public-api.mjs",
