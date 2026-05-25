@@ -1,4 +1,8 @@
+import { getOrigin } from "./_origin.js";
+
 export default function handler(_request, response) {
+  const origin = getOrigin(_request);
+
   response.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
   response.status(200).json({
     ok: true,
@@ -18,7 +22,7 @@ export default function handler(_request, response) {
       contractDeployAttempted: true,
     },
     contract: {
-      name: "LaunchWorkflowProofV2",
+      name: "LaunchWorkflowProofV3",
       network: "Base Mainnet",
       address: "0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
       ownerPreview: "0xc977...1f8b",
@@ -27,10 +31,10 @@ export default function handler(_request, response) {
       baseScanUrl: "https://basescan.org/address/0xd6Cfc034ee69eb58c1cBD6A15660c95a49804F65",
     },
     links: {
-      website: "https://base-agent-v2.vercel.app",
+      website: origin,
       github: "https://github.com/lovekry19950411-wu/launch-desk-base-agent",
-      catalog: "https://base-agent-v2.vercel.app/api/catalog",
-      openapi: "https://base-agent-v2.vercel.app/openapi.json",
+      catalog: `${origin}/api/catalog`,
+      openapi: `${origin}/openapi.json`,
     },
     updatedAt: "2026-05-21",
   });

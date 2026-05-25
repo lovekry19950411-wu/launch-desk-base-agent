@@ -1,4 +1,8 @@
+import { getOrigin } from "./_origin.js";
+
 export default function handler(_request, response) {
+  const origin = getOrigin(_request);
+
   response.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
   response.status(200).json({
     ok: true,
@@ -6,7 +10,7 @@ export default function handler(_request, response) {
     mode: "public-agent-catalog",
     description:
       "A public-safe catalog of the Base-native agent proof APIs exposed by Launch Desk Base Agent.",
-    baseUrl: "https://base-agent-v2.vercel.app",
+    baseUrl: origin,
     builderCode: "bc_9jnnvjew",
     network: {
       name: "Base Mainnet + Base Sepolia",

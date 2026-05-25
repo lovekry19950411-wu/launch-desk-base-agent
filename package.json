@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "node server.mjs",
     "agent:chat": "node scripts/base-agent-chat.mjs",
     "agent:status": "node scripts/base-agent-status.mjs",
     "agent:faucet": "node scripts/base-agent-faucet.mjs",
