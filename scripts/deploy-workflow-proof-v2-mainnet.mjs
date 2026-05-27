@@ -21,6 +21,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const contractPath = path.join(root, "contracts", "LaunchWorkflowProofV2.sol");
 const deploymentPath = path.join(root, "deployments", "base-mainnet-v2.json");
+const DEFAULT_APP_URL = "http://localhost:8788";
 
 function compileContract() {
   const source = fs.readFileSync(contractPath, "utf8");
@@ -72,6 +73,7 @@ try {
   if (!agentOperator) throw new Error("Missing MAINNET_AGENT_OPERATOR or CDP_WALLET_ADDRESS.");
 
   const rpcUrl = process.env.BASE_MAINNET_RPC_URL || process.env.EVM_MAINNET_RPC_URL || "https://mainnet.base.org";
+  const appUrl = process.env.PUBLIC_APP_URL || process.env.APP_URL || DEFAULT_APP_URL;
   const { abi, bytecode } = compileContract();
   const account = privateKeyToAccount(privateKey);
   const publicClient = createPublicClient({ chain: base, transport: http(rpcUrl) });
@@ -118,11 +120,11 @@ try {
     riskLevel: "medium",
     riskLevelCode: 2,
     proof: "Base mainnet AI workflow receipt contract deployed and first workflow proof recorded.",
-    appUrl: "https://base-agent-v2.vercel.app",
+    appUrl,
   };
   const workflowIdHash = keccak256(toBytes(workflowOutput.runId));
   const outputHash = keccak256(toBytes(JSON.stringify(workflowOutput)));
-  const metadataURI = "https://base-agent-v2.vercel.app/api/proof";
+  const metadataURI = `${appUrl.replace(/\/$/, "")}/api/proof`;
   const recordData = encodeFunctionData({
     abi,
     functionName: "recordWorkflowReceipt",

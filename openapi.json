@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://base-agent-v2.vercel.app"
+      "url": "/"
     }
   ],
   "paths": {

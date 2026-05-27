@@ -1,6 +1,7 @@
 export function getOrigin(request) {
-  const forwardedProto = request.headers["x-forwarded-proto"];
-  const host = request.headers["x-forwarded-host"] || request.headers.host;
+  const headers = request?.headers ?? {};
+  const forwardedProto = headers["x-forwarded-proto"];
+  const host = headers["x-forwarded-host"] || headers.host;
   const proto = Array.isArray(forwardedProto) ? forwardedProto[0] : forwardedProto || "https";
 
   if (!host) {

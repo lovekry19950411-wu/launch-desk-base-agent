@@ -17,6 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const contractPath = path.join(root, "contracts", "LaunchWorkflowProofV3.sol");
 const deploymentPath = path.join(root, "deployments", "base-mainnet-v3.json");
+const DEFAULT_APP_URL = "http://localhost:8788";
 
 function compileAbi() {
   const source = fs.readFileSync(contractPath, "utf8");
@@ -59,6 +60,7 @@ try {
   process.env.CDP_WALLET_ADDRESS = agentOperator;
 
   const abi = compileAbi();
+  const appUrl = process.env.PUBLIC_APP_URL || process.env.APP_URL || DEFAULT_APP_URL;
   const publicClient = createPublicClient({ chain: base, transport: http(process.env.RPC_URL) });
   const { walletProvider, keySetName } = await createWalletProviderFromEnv();
   const operatorAddress = walletProvider.getAddress();
@@ -81,14 +83,14 @@ try {
     riskLevel: "medium",
     riskLevelCode: 2,
     proof: "AI operator wallet recorded a founder-owned Launch Desk workflow receipt on Base mainnet.",
-    appUrl: "https://base-agent-v2.vercel.app",
+    appUrl,
     owner,
     agentOperator: recordedAgentOperator,
     contractAddress: deployment.contractAddress,
   };
   const workflowIdHash = keccak256(toBytes(workflowOutput.runId));
   const outputHash = keccak256(toBytes(JSON.stringify(workflowOutput)));
-  const metadataURI = "https://base-agent-v2.vercel.app/api/proof";
+  const metadataURI = `${appUrl.replace(/\/$/, "")}/api/proof`;
 
   const data = encodeFunctionData({
     abi,
