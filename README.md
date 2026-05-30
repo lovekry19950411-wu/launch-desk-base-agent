@@ -17,13 +17,13 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 
 ## Current Live Demo
 
-- Base Agent site: `https://base-agent-v2.vercel.app`
+- Base Agent site: `https://launch-desk-base-agent.onrender.com`
 - Base Agent GitHub: `https://github.com/lovekry19950411-wu/launch-desk-base-agent`
-- Public capability catalog: `https://base-agent-v2.vercel.app/api/catalog`
-- Public status API: `https://base-agent-v2.vercel.app/api/status`
-- Public proof API: `https://base-agent-v2.vercel.app/api/proof`
-- Public demo run API: `https://base-agent-v2.vercel.app/api/run-demo`
-- OpenAPI spec: `https://base-agent-v2.vercel.app/openapi.json`
+- Public capability catalog: `https://launch-desk-base-agent.onrender.com/api/catalog`
+- Public status API: `https://launch-desk-base-agent.onrender.com/api/status`
+- Public proof API: `https://launch-desk-base-agent.onrender.com/api/proof`
+- Public demo run API: `https://launch-desk-base-agent.onrender.com/api/run-demo`
+- OpenAPI spec: `https://launch-desk-base-agent.onrender.com/openapi.json`
 - Launch Desk product demo: `https://launch-desk-git-base-miniapp-sheng-pung-wus-projects.vercel.app`
 - Launch Desk branch: `https://github.com/lovekry19950411-wu/launch-desk/tree/base-miniapp`
 - Builder Code: `bc_9jnnvjew`
@@ -31,7 +31,7 @@ It is meant to support grant, builder, and ecosystem review conversations by sho
 
 ## Public Status Page
 
-This repo includes a tiny static `index.html` for Vercel deployment and project verification.
+This repo includes a tiny static `index.html` for Render deployment and project verification.
 
 It is intentionally separate from the agent scripts:
 
@@ -65,6 +65,8 @@ The page also exposes safe public proof APIs:
 - `docs/contract-plan.md` - Base Sepolia workflow proof contract plan
 - `docs/roadmap.md` - phased roadmap from proof API to paid Base agent
 - `docs/submission-checklist.md` - review and grant submission checklist
+- `docs/cdp-agent-revenue-config.md` - CDP wallet, x402 revenue routing, and safety controls
+- `docs/official-submission-cdp-agent.md` - short official submission copy for Base/CDP reviews
 - `scripts/check-base-proof.mjs` - local non-spending proof summary
 - `scripts/base-agent-chat.mjs` - simple Chinese chat shell for wallet status and faucet actions
 - `scripts/x402-test-readiness.mjs` - local x402 paid API unlock test
@@ -84,7 +86,7 @@ This script does not send transactions, deploy contracts, or call paid APIs.
 npm run verify:api
 ```
 
-This validates the public Vercel API handlers locally: catalog, status, proof, and simulated demo run.
+This validates the public API handlers locally: catalog, status, proof, and simulated demo run.
 
 ## Workflow Proof Contract
 
@@ -182,10 +184,12 @@ npm run agent:chat
 
 Supported Chinese prompts:
 
+- `查錢包`
 - `查餘額`
-- `錢包地址`
-- `幫我領 ETH`
-- `幫我領 USDC`
+- `領 ETH`
+- `領 USDC`
+- `收入設定`
+- `合約 proof`
 - `exit`
 
 Chat mode stays on Base Sepolia and does not touch mainnet.
@@ -195,15 +199,15 @@ Chat mode stays on Base Sepolia and does not touch mainnet.
 The first free phase exposes reviewer-friendly APIs that other agents, dashboards, or funding reviewers can inspect without secrets:
 
 ```bash
-curl https://base-agent-v2.vercel.app/api/catalog
-curl https://base-agent-v2.vercel.app/api/status
-curl https://base-agent-v2.vercel.app/api/proof
+curl https://launch-desk-base-agent.onrender.com/api/catalog
+curl https://launch-desk-base-agent.onrender.com/api/status
+curl https://launch-desk-base-agent.onrender.com/api/proof
 ```
 
 Run the simulated agent workflow:
 
 ```bash
-curl -X POST https://base-agent-v2.vercel.app/api/run-demo \
+curl -X POST https://launch-desk-base-agent.onrender.com/api/run-demo \
   -H "content-type: application/json" \
   -d "{\"productSummary\":\"Launch Desk Base Agent demo\",\"targetAudience\":\"Base builders\"}"
 ```

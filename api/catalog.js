@@ -55,10 +55,17 @@ export default function handler(_request, response) {
       },
       {
         id: "workflow-proof-contract",
-        endpoint: "contracts/LaunchWorkflowProofV2.sol",
+        endpoint: "contracts/LaunchWorkflowProofV3.sol",
         status: "deployed",
         summary: "Mainnet smart contract deployed on Base for recording Launch Desk workflow receipt hashes and metadata.",
         freePhase: false,
+      },
+      {
+        id: "revenue-routing",
+        endpoint: "npm run revenue:plan",
+        status: "configured",
+        summary: "Revenue should route directly to the founder wallet first; AI operator only keeps minimal gas for approved proof actions.",
+        freePhase: true,
       },
     ],
     contract: {
@@ -77,11 +84,11 @@ export default function handler(_request, response) {
       browserSigning: false,
     },
     nextPaidSteps: [
-      "Fund a small Base mainnet wallet with ETH for gas and USDC for x402 testing.",
+      "Keep paid API revenue routed to the founder wallet, not the AI operator wallet.",
       "Promote the proof endpoint into a real x402-protected readiness API.",
       "Append Builder Code to qualifying transactions where supported.",
-      "Deploy a minimal contract only if a campaign or customer requires it.",
+      "Record only approved workflow receipt hashes to the V3 Base mainnet proof contract.",
     ],
-    updatedAt: "2026-05-21",
+    updatedAt: "2026-05-30",
   });
 }

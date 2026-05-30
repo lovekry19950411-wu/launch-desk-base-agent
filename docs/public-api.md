@@ -7,13 +7,13 @@ They do not expose private keys, wallet secrets, production API keys, or mainnet
 ## Base URL
 
 ```text
-https://base-agent-v2.vercel.app
+https://launch-desk-base-agent.onrender.com
 ```
 
 ## OpenAPI
 
 ```text
-https://base-agent-v2.vercel.app/openapi.json
+https://launch-desk-base-agent.onrender.com/openapi.json
 ```
 
 ## GET /api/catalog
@@ -21,7 +21,7 @@ https://base-agent-v2.vercel.app/openapi.json
 Returns the public agent capability catalog.
 
 ```bash
-curl https://base-agent-v2.vercel.app/api/catalog
+curl https://launch-desk-base-agent.onrender.com/api/catalog
 ```
 
 Response shape:
@@ -53,7 +53,7 @@ Response shape:
 Returns the public agent status.
 
 ```bash
-curl https://base-agent-v2.vercel.app/api/status
+curl https://launch-desk-base-agent.onrender.com/api/status
 ```
 
 Response shape:
@@ -84,7 +84,7 @@ Response shape:
 Returns the public x402 and readiness proof snapshot.
 
 ```bash
-curl https://base-agent-v2.vercel.app/api/proof
+curl https://launch-desk-base-agent.onrender.com/api/proof
 ```
 
 Response shape:
@@ -125,7 +125,7 @@ The next production step is to replace this proof snapshot with live read-only s
 Runs a public-safe simulated agent run.
 
 ```bash
-curl -X POST https://base-agent-v2.vercel.app/api/run-demo \
+curl -X POST https://launch-desk-base-agent.onrender.com/api/run-demo \
   -H "content-type: application/json" \
   -d "{\"productSummary\":\"Launch Desk Base Agent demo\"}"
 ```

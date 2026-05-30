@@ -16,6 +16,7 @@
     "contract:record:mainnet:v3": "node scripts/record-workflow-proof-v3-agent.mjs",
     "contract:build-owner-deployer": "node scripts/build-owner-deployer-page.mjs",
     "contract:record:sepolia": "node scripts/record-workflow-proof.mjs",
+    "revenue:plan": "node scripts/revenue-routing-plan.mjs",
     "proof": "node scripts/check-base-proof.mjs",
     "verify:api": "node scripts/verify-public-api.mjs",
     "x402:init-payer": "node scripts/x402-init-payer.mjs",
